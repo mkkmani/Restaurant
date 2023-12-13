@@ -1,0 +1,30 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+.menu-tabs-ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+
+.tab-menu {
+  background: none;
+  border: none;
+  white-space: nowrap;
+  margin: 10px;
+  cursor: pointer;
+  padding: 0;
+  padding-bottom: 6px;
+}
+
+.active-tab {
+  border-bottom: 3px solid #30dbd8;
+}
+
+.items-ul-home {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
