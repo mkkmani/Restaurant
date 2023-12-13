@@ -1,4 +1,4 @@
-import {useHistory} from 'react-router-dom'
+import {useHistory, Redirect} from 'react-router-dom'
 import {useState} from 'react'
 import Cookies from 'js-cookie'
 import './index.css'
@@ -87,6 +87,11 @@ const LoginRoute = () => {
       </form>
     </div>
   )
+
+  const jwtToken = Cookies.get('jwt_token')
+  if (jwtToken !== undefined) {
+    return <Redirect to="/" />
+  }
 
   return <div>{LoginForm()}</div>
 }
