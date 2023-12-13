@@ -1,5 +1,6 @@
 import {useContext, useEffect, useState} from 'react'
 import HomeDetails from '../HomeDetails'
+import HomeSkeleton from '../Skeleton'
 import RestaurantContext from '../../Context/cartContext'
 
 const apiStatusList = {
@@ -65,7 +66,6 @@ const HomeRoute = () => {
     fetchData()
   }, [addDetails])
 
-  const loading = () => <h1>Data is loading wait...</h1>
   const failure = () => <h1>Data fetching failed...</h1>
   const success = () => (
     <div>
@@ -80,7 +80,7 @@ const HomeRoute = () => {
       case apiStatusList.failure:
         return failure()
       case apiStatusList.loading:
-        return loading()
+        return <HomeSkeleton />
       default:
         return null
     }
