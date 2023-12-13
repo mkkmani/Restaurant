@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "OPENSSL_CONF=/path/to/openssl.cnf react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "lint": "eslint .",
     "lint:fix": "eslint --fix src/",
