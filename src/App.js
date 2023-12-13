@@ -4,6 +4,7 @@ import {Component} from 'react'
 import {SkeletonTheme} from 'react-loading-skeleton'
 import LoginForm from './components/LoginRoute'
 import HomeRoute from './components/HomeRoute'
+import CartRoute from './components/CartRoute'
 import Navbar from './components/Navbar'
 import ProtectedRoute from './components/ProtectedRouter'
 import RestaurantContext from './Context/cartContext'
@@ -14,11 +15,25 @@ class App extends Component {
     restaurantDetails: {},
   }
 
+  //   addToCart = details => {
+  //     const {cartList} = this.state
+  //     const existing = cartList.findIndex(item => item.dishId === details.dishId)
+  //     if (existing !== -1) {
+  //       const updated = [...details]
+  //       updated[existing].quantity += 1
+  //       this.setState({cartList: updated})
+  //     } else {
+  //       const updated = [...cartList, {...details, quantity: 1}]
+  //       this.setState({cartList: updated})
+  //     }
+  //   }
+
   addToCart = details => {
     const {cartList} = this.state
     const existing = cartList.findIndex(item => item.dishId === details.dishId)
+
     if (existing !== -1) {
-      const updated = [...details]
+      const updated = [...cartList] // Spread the cartList
       updated[existing].quantity += 1
       this.setState({cartList: updated})
     } else {
@@ -68,6 +83,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/login" component={LoginForm} />
             <ProtectedRoute exact path="/" component={HomeRoute} />
+            <ProtectedRoute exact path="/cart" component={CartRoute} />
           </Switch>
         </SkeletonTheme>
       </RestaurantContext.Provider>

@@ -12,6 +12,7 @@
 .link {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 .logo {
@@ -64,4 +65,24 @@
 
 .nav-links button:hover {
   color: #ffcc00;
+}
+
+.cart-count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.span-count {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 16px;
+  margin-left: 5px;
+  padding-bottom: 3px;
+  padding-right: 1px;
+  background-color: #ffcc00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
