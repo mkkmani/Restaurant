@@ -29,7 +29,7 @@ const Navbar = props => {
         </li>
         <li>
           <Link to="/cart" className="link cart-count">
-            Cart
+            My orders
             {itemsCount > 0 && <span className="span-count">{itemsCount}</span>}
           </Link>
         </li>
