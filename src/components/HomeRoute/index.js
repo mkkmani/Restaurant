@@ -1,6 +1,6 @@
 import {useContext, useEffect, useState} from 'react'
+import Loader from 'react-loader-spinner'
 import HomeDetails from '../HomeDetails'
-import HomeSkeleton from '../Skeleton'
 import RestaurantContext from '../../Context/cartContext'
 
 const apiStatusList = {
@@ -9,6 +9,12 @@ const apiStatusList = {
   failure: 'FAILURE',
   init: 'INIT',
 }
+
+const RenderLoader = () => (
+  <div>
+    <Loader type="Oval" color="orange" height={50} />
+  </div>
+)
 
 const HomeRoute = () => {
   const [apiStatus, setApiStatus] = useState(apiStatusList.init)
@@ -80,7 +86,7 @@ const HomeRoute = () => {
       case apiStatusList.failure:
         return failure()
       case apiStatusList.loading:
-        return <HomeSkeleton />
+        return RenderLoader()
       default:
         return null
     }
