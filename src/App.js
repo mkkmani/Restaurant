@@ -1,7 +1,6 @@
 import './App.css'
 import {Switch, Route} from 'react-router-dom'
 import {Component} from 'react'
-import {SkeletonTheme} from 'react-loading-skeleton'
 import LoginForm from './components/LoginRoute'
 import HomeRoute from './components/HomeRoute'
 import CartRoute from './components/CartRoute'
@@ -14,19 +13,6 @@ class App extends Component {
     cartList: [],
     restaurantDetails: {},
   }
-
-  //   addToCart = details => {
-  //     const {cartList} = this.state
-  //     const existing = cartList.findIndex(item => item.dishId === details.dishId)
-  //     if (existing !== -1) {
-  //       const updated = [...details]
-  //       updated[existing].quantity += 1
-  //       this.setState({cartList: updated})
-  //     } else {
-  //       const updated = [...cartList, {...details, quantity: 1}]
-  //       this.setState({cartList: updated})
-  //     }
-  //   }
 
   addToCart = details => {
     const {cartList} = this.state
@@ -78,14 +64,12 @@ class App extends Component {
           removeAll: this.removeAll,
         }}
       >
-        <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          <Navbar />
-          <Switch>
-            <Route exact path="/login" component={LoginForm} />
-            <ProtectedRoute exact path="/" component={HomeRoute} />
-            <ProtectedRoute exact path="/cart" component={CartRoute} />
-          </Switch>
-        </SkeletonTheme>
+        <Navbar />
+        <Switch>
+          <Route exact path="/login" component={LoginForm} />
+          <ProtectedRoute exact path="/" component={HomeRoute} />
+          <ProtectedRoute exact path="/cart" component={CartRoute} />
+        </Switch>
       </RestaurantContext.Provider>
     )
   }
