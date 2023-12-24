@@ -8,37 +8,58 @@ const LoginRoute = () => {
   const [password, setPassword] = useState('')
   const [errMsg, setErrorMsg] = useState('')
   const [showErr, setShowErr] = useState(false)
-  const [showPass, setShowPass] = useState(false)
   const history = useHistory()
+
+  //   const onClickLogin = async e => {
+  //     e.preventDefault()
+
+  //     if (username === '') {
+  //       setErrorMsg('* Please enter username')
+  //       setShowErr(true)
+  //     } else if (password === '') {
+  //       setErrorMsg('* Please enter password')
+  //       setShowErr(true)
+  //     } else if (username !== 'Mani') {
+  //       setErrorMsg('* Invalid username')
+  //       setShowErr(true)
+  //     } else if (password !== 'Mani@123') {
+  //       setErrorMsg('* Invalid password')
+  //       setShowErr(true)
+  //     } else {
+  //       const details = {username: 'rahul', password: 'rahul@2021'}
+  //       const api = 'https://apis.ccbp.in/login'
+  //       const options = {
+  //         method: 'POST',
+  //         body: JSON.stringify(details),
+  //       }
+
+  //       const response = await fetch(api, options)
+  //       const data = await response.json()
+
+  //       Cookies.set('jwt_token', data.jwt_token, {expires: 30})
+  //       history.push('/')
+  //     }
+  //   }
 
   const onClickLogin = async e => {
     e.preventDefault()
+    const details = {username, password}
+    const api = 'https://apis.ccbp.in/login'
 
-    if (username === '') {
-      setErrorMsg('* Please enter username')
-      setShowErr(true)
-    } else if (password === '') {
-      setErrorMsg('* Please enter password')
-      setShowErr(true)
-    } else if (username !== 'Mani') {
-      setErrorMsg('* Invalid username')
-      setShowErr(true)
-    } else if (password !== 'Mani@123') {
-      setErrorMsg('* Invalid password')
-      setShowErr(true)
-    } else {
-      const details = {username: 'rahul', password: 'rahul@2021'}
-      const api = 'https://apis.ccbp.in/login'
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(details),
-      }
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(details),
+    }
 
-      const response = await fetch(api, options)
-      const data = await response.json()
+    const response = await fetch(api, options)
+    const data = await response.json()
 
+    if (response.ok) {
       Cookies.set('jwt_token', data.jwt_token, {expires: 30})
       history.push('/')
+    } else {
+      setErrorMsg(data.error_msg)
+      setShowErr(true)
     }
   }
 
@@ -47,7 +68,7 @@ const LoginRoute = () => {
       <h1>UNI Resto Cafe</h1>
       <form className="login-form" onSubmit={onClickLogin}>
         <div className="input-label">
-          <label htmlFor="username" id="username" className="label-login">
+          <label htmlFor="username" className="label-login">
             USERNAME
           </label>
           <input
@@ -59,26 +80,16 @@ const LoginRoute = () => {
           />
         </div>
         <div className="input-label">
-          <label htmlFor="password" id="password" className="label-login">
+          <label htmlFor="password" className="label-login">
             PASSWORD
           </label>
           <input
+            type="password"
             className="input-login"
             id="password"
             value={password}
-            type={showPass ? 'text' : 'password'}
             onChange={e => setPassword(e.target.value)}
           />
-        </div>
-        <div className="checkbox-label">
-          <input
-            id="checkbox"
-            type="checkbox"
-            onClick={() => setShowPass(!showPass)}
-          />
-          <label htmlFor="checkbox" className="showpass">
-            Show password
-          </label>
         </div>
         <button type="submit" className="submit-btn">
           Login

@@ -5,9 +5,10 @@ const RestaurantContext = React.createContext({
   removeFromCart: () => {},
   cartList: [],
   restaurantDetails: {},
-  updateQuantity: () => {},
+  incrementCartItemQuantity: () => {},
+  decrementCartItemQuantity: () => {},
   addDetails: () => {},
-  removeAll: () => {},
+  removeAllCartItems: () => {},
 })
 
 export default RestaurantContext

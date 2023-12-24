@@ -32,13 +32,55 @@ class App extends Component {
     this.setState({restaurantDetails: details})
   }
 
-  updateQuantity = (id, change) => {
-    const {cartList} = this.state
-    const itemIndex = cartList.findIndex(item => item.dishId === id)
-    cartList[itemIndex].quantity += change
-    const updatedList = cartList.filter(item => item.quantity > 0)
-    this.setState({cartList: updatedList})
+  incrementCartItemQuantity = id => {
+    this.setState(prevState => {
+      const {cartList} = prevState
+      const itemIndex = cartList.findIndex(item => item.dishId === id)
+
+      if (itemIndex !== -1) {
+        const updatedCartList = [...cartList]
+        updatedCartList[itemIndex] = {
+          ...updatedCartList[itemIndex],
+          quantity: updatedCartList[itemIndex].quantity + 1,
+        }
+
+        return {cartList: updatedCartList}
+      }
+
+      return null
+    })
   }
+
+  decrementCartItemQuantity = id => {
+    this.setState(prevState => {
+      const {cartList} = prevState
+      const itemIndex = cartList.findIndex(item => item.dishId === id)
+
+      if (itemIndex !== -1) {
+        const updatedCartList = [...cartList]
+        updatedCartList[itemIndex] = {
+          ...updatedCartList[itemIndex],
+          quantity: updatedCartList[itemIndex].quantity - 1,
+        }
+
+        if (updatedCartList[itemIndex].quantity === 0) {
+          updatedCartList.splice(itemIndex, 1)
+        }
+
+        return {cartList: updatedCartList}
+      }
+
+      return null
+    })
+  }
+
+  //   updateQuantity = (id, change) => {
+  //     const {cartList} = this.state
+  //     const itemIndex = cartList.findIndex(item => item.dishId === id)
+  //     cartList[itemIndex].quantity += change
+  //     const updatedList = cartList.filter(item => item.quantity > 0)
+  //     this.setState({cartList: updatedList})
+  //   }
 
   removeFromCart = id => {
     const {cartList} = this.state
@@ -46,7 +88,7 @@ class App extends Component {
     this.setState({cartList: updatedList})
   }
 
-  removeAll = () => {
+  removeAllCartItems = () => {
     this.setState({cartList: []})
   }
 
@@ -60,8 +102,9 @@ class App extends Component {
           cartList,
           restaurantDetails,
           addDetails: this.addDetails,
-          updateQuantity: this.updateQuantity,
-          removeAll: this.removeAll,
+          incrementCartItemQuantity: this.incrementCartItemQuantity,
+          decrementCartItemQuantity: this.decrementCartItemQuantity,
+          removeAllCartItems: this.removeAllCartItems,
         }}
       >
         <Navbar />

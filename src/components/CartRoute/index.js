@@ -4,9 +4,13 @@ import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
 const CartRoute = () => {
-  const {cartList, updateQuantity, removeAll, removeFromCart} = useContext(
-    RestaurantContext,
-  )
+  const {
+    cartList,
+    decrementCartItemQuantity,
+    incrementCartItemQuantity,
+    removeAllCartItems,
+    removeFromCart,
+  } = useContext(RestaurantContext)
 
   let totalAmount = 0
 
@@ -19,7 +23,7 @@ const CartRoute = () => {
       <button
         className="remove-all-btn"
         type="button"
-        onClick={() => removeAll()}
+        onClick={() => removeAllCartItems()}
       >
         Remove all
       </button>
@@ -43,7 +47,7 @@ const CartRoute = () => {
                   <div className="qty-div">
                     <button
                       type="button"
-                      onClick={() => updateQuantity(item.dishId, -1)}
+                      onClick={() => decrementCartItemQuantity(item.dishId)}
                       className="qty-btn"
                     >
                       -
@@ -51,7 +55,7 @@ const CartRoute = () => {
                     <span className="item-qty">{item.quantity}</span>
                     <button
                       type="button"
-                      onClick={() => updateQuantity(item.dishId, 1)}
+                      onClick={() => incrementCartItemQuantity(item.dishId)}
                       className="qty-btn"
                     >
                       +
@@ -87,7 +91,13 @@ const CartRoute = () => {
 
   const returnCartEmpty = () => (
     <div className="empty-cart">
-      <h1 className="empty-text">You didn't added any items</h1>
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
+        className="cart-empty-img"
+        alt="cart empty"
+      />
+
+      <h1 className="empty-text">You cart is empty</h1>
       <Link to="/">
         <button type="button" className="add-items-btn">
           Add items

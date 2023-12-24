@@ -1,6 +1,7 @@
 import {Link, withRouter} from 'react-router-dom'
 import {useContext} from 'react'
 import Cookies from 'js-cookie'
+import {AiOutlineShoppingCart} from 'react-icons/ai'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
@@ -29,7 +30,7 @@ const Navbar = props => {
         </li>
         <li>
           <Link to="/cart" className="link cart-count">
-            My orders
+            <AiOutlineShoppingCart />
             {itemsCount > 0 && <span className="span-count">{itemsCount}</span>}
           </Link>
         </li>
