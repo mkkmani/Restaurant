@@ -30,7 +30,7 @@ const Navbar = props => {
         </li>
         <li>
           <Link to="/cart" className="link cart-count">
-            <AiOutlineShoppingCart />
+            <AiOutlineShoppingCart className="nav-icon" />
             {itemsCount > 0 && <span className="span-count">{itemsCount}</span>}
           </Link>
         </li>

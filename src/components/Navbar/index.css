@@ -56,6 +56,11 @@
   color: #ffcc00;
 }
 
+.nav-icon {
+  height: 35px;
+  width: 35px;
+}
+
 .nav-links button {
   background: none;
   border: none;
@@ -83,8 +88,9 @@
   border-radius: 50%;
   font-size: 16px;
   margin-left: 5px;
-  padding-bottom: 3px;
+  padding-bottom: -1px;
   padding-right: 1px;
+  padding-left: 1px;
   background-color: #ffcc00;
   display: flex;
   align-items: center;
