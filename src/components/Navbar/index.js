@@ -18,7 +18,7 @@ const Navbar = props => {
     <nav className="navbar">
       <div className="logo">
         <Link to="/" className="link">
-          <span>UNI Resto Cafe</span>
+          <span className="resto-name">UNI Resto Cafe</span>
         </Link>
       </div>
       <ul className="nav-links">

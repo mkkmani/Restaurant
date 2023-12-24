@@ -48,7 +48,7 @@ const LoginRoute = () => {
       <form className="login-form" onSubmit={onClickLogin}>
         <div className="input-label">
           <label htmlFor="username" id="username" className="label-login">
-            Username
+            USERNAME
           </label>
           <input
             type="text"
@@ -60,7 +60,7 @@ const LoginRoute = () => {
         </div>
         <div className="input-label">
           <label htmlFor="password" id="password" className="label-login">
-            Password
+            PASSWORD
           </label>
           <input
             className="input-login"

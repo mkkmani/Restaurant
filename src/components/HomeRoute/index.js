@@ -2,6 +2,7 @@ import {useContext, useEffect, useState} from 'react'
 import Loader from 'react-loader-spinner'
 import HomeDetails from '../HomeDetails'
 import RestaurantContext from '../../Context/cartContext'
+import './index.css'
 
 const apiStatusList = {
   loading: 'LOADING',
@@ -11,7 +12,7 @@ const apiStatusList = {
 }
 
 const RenderLoader = () => (
-  <div>
+  <div className="loader-container">
     <Loader type="Oval" color="orange" height={50} />
   </div>
 )
