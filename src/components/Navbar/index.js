@@ -5,7 +5,7 @@ import {AiOutlineShoppingCart} from 'react-icons/ai'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
-const Navbar = props => {
+const Header = props => {
   const handleLogout = () => {
     const {history} = props
     Cookies.remove('jwt_token')
@@ -52,4 +52,4 @@ const Navbar = props => {
   )
 }
 
-export default withRouter(Navbar)
+export default withRouter(Header)

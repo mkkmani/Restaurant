@@ -1,8 +1,8 @@
 import {useContext, useEffect, useState} from 'react'
 import Loader from 'react-loader-spinner'
 import HomeDetails from '../HomeDetails'
-import Navbar from '../Navbar'
-import RestaurantContext from '../../Context/cartContext'
+import Header from '../Navbar'
+import CartContext from '../../Context/cartContext'
 import './index.css'
 
 const apiStatusList = {
@@ -20,7 +20,7 @@ const RenderLoader = () => (
 
 const HomeRoute = () => {
   const [apiStatus, setApiStatus] = useState(apiStatusList.init)
-  const {addDetails} = useContext(RestaurantContext)
+  const {addDetails} = useContext(CartContext)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +96,7 @@ const HomeRoute = () => {
 
   return (
     <>
-      <Navbar />
+      <Header />
       {renderPage()}
     </>
   )

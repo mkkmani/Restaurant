@@ -5,7 +5,7 @@ import LoginForm from './components/LoginRoute'
 import HomeRoute from './components/HomeRoute'
 import CartRoute from './components/CartRoute'
 import ProtectedRoute from './components/ProtectedRouter'
-import RestaurantContext from './Context/cartContext'
+import CartContext from './Context/cartContext'
 
 class App extends Component {
   state = {
@@ -19,7 +19,7 @@ class App extends Component {
     const existing = cartList.findIndex(item => item.dishId === details.dishId)
 
     if (existing !== -1) {
-      const updated = [...cartList] // Spread the cartList
+      const updated = [...cartList]
       updated[existing].quantity += 1
       this.setState({cartList: updated})
     } else {
@@ -87,7 +87,7 @@ class App extends Component {
   render() {
     const {cartList, restaurantDetails, customizationAvailable} = this.state
     return (
-      <RestaurantContext.Provider
+      <CartContext.Provider
         value={{
           addToCart: this.addToCart,
           removeFromCart: this.removeFromCart,
@@ -105,7 +105,7 @@ class App extends Component {
           <ProtectedRoute exact path="/" component={HomeRoute} />
           <ProtectedRoute exact path="/cart" component={CartRoute} />
         </Switch>
-      </RestaurantContext.Provider>
+      </CartContext.Provider>
     )
   }
 }

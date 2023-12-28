@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
-import Navbar from '../Navbar'
-import RestaurantContext from '../../Context/cartContext'
+import Header from '../Navbar'
+import CartContext from '../../Context/cartContext'
 import './index.css'
 
 const CartRoute = () => {
@@ -11,7 +11,7 @@ const CartRoute = () => {
     incrementCartItemQuantity,
     removeAllCartItems,
     removeFromCart,
-  } = useContext(RestaurantContext)
+  } = useContext(CartContext)
 
   let totalAmount = 0
 
@@ -112,7 +112,7 @@ const CartRoute = () => {
   if (cartList.length === 0) {
     return (
       <div>
-        <Navbar />
+        <Header />
         {returnCartEmpty()}
       </div>
     )
@@ -120,7 +120,7 @@ const CartRoute = () => {
 
   return (
     <div>
-      <Navbar />
+      <Header />
       {removeAllItems()}
       {returnItemsList()}
     </div>
