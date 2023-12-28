@@ -1,4 +1,4 @@
-import {useContext} from 'react'
+import {useState, useContext} from 'react'
 import {BiFoodTag} from 'react-icons/bi'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
@@ -17,6 +17,20 @@ const DishCard = props => {
     dishType,
   } = details
 
+  const [quantity, setQuantity] = useState(0)
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1)
+    addToCart({...details, quantity: quantity + 1})
+  }
+
+  const handleDecrement = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1)
+      addToCart({...details, quantity: quantity - 1})
+    }
+  }
+
   return (
     <div className="dish-card">
       <div className="type-details">
@@ -27,13 +41,23 @@ const DishCard = props => {
           <span className="dish-desc">{dishDesc}</span>
           <div>
             {dishAvailability ? (
-              <button
-                type="button"
-                className="add-btn"
-                onClick={() => addToCart(details)}
-              >
-                Add
-              </button>
+              <div className="dish-btn-quantity">
+                <button
+                  type="button"
+                  className="decrement-btn"
+                  onClick={handleDecrement}
+                >
+                  -
+                </button>
+                <p>{quantity}</p>
+                <button
+                  type="button"
+                  className="increment-btn"
+                  onClick={handleIncrement}
+                >
+                  +
+                </button>
+              </div>
             ) : (
               <p>Not available</p>
             )}

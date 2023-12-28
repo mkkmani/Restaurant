@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from 'react'
 import Loader from 'react-loader-spinner'
 import HomeDetails from '../HomeDetails'
+import Navbar from '../Navbar'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
@@ -93,7 +94,12 @@ const HomeRoute = () => {
     }
   }
 
-  return renderPage()
+  return (
+    <>
+      <Navbar />
+      {renderPage()}
+    </>
+  )
 }
 
 export default HomeRoute

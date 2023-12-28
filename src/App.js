@@ -4,7 +4,6 @@ import {Component} from 'react'
 import LoginForm from './components/LoginRoute'
 import HomeRoute from './components/HomeRoute'
 import CartRoute from './components/CartRoute'
-import Navbar from './components/Navbar'
 import ProtectedRoute from './components/ProtectedRouter'
 import RestaurantContext from './Context/cartContext'
 
@@ -12,6 +11,7 @@ class App extends Component {
   state = {
     cartList: [],
     restaurantDetails: {},
+    customizationAvailable: false,
   }
 
   addToCart = details => {
@@ -74,14 +74,6 @@ class App extends Component {
     })
   }
 
-  //   updateQuantity = (id, change) => {
-  //     const {cartList} = this.state
-  //     const itemIndex = cartList.findIndex(item => item.dishId === id)
-  //     cartList[itemIndex].quantity += change
-  //     const updatedList = cartList.filter(item => item.quantity > 0)
-  //     this.setState({cartList: updatedList})
-  //   }
-
   removeFromCart = id => {
     const {cartList} = this.state
     const updatedList = cartList.filter(item => item.dishId !== id)
@@ -93,7 +85,7 @@ class App extends Component {
   }
 
   render() {
-    const {cartList, restaurantDetails} = this.state
+    const {cartList, restaurantDetails, customizationAvailable} = this.state
     return (
       <RestaurantContext.Provider
         value={{
@@ -101,13 +93,13 @@ class App extends Component {
           removeFromCart: this.removeFromCart,
           cartList,
           restaurantDetails,
+          customizationAvailable,
           addDetails: this.addDetails,
           incrementCartItemQuantity: this.incrementCartItemQuantity,
           decrementCartItemQuantity: this.decrementCartItemQuantity,
           removeAllCartItems: this.removeAllCartItems,
         }}
       >
-        <Navbar />
         <Switch>
           <Route exact path="/login" component={LoginForm} />
           <ProtectedRoute exact path="/" component={HomeRoute} />

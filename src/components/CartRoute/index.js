@@ -1,5 +1,6 @@
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
+import Navbar from '../Navbar'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
@@ -90,28 +91,36 @@ const CartRoute = () => {
   )
 
   const returnCartEmpty = () => (
-    <div className="empty-cart">
-      <img
-        src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
-        className="cart-empty-img"
-        alt="cart empty"
-      />
+    <div>
+      <div className="empty-cart">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
+          className="cart-empty-img"
+          alt="cart empty"
+        />
 
-      <h1 className="empty-text">You cart is empty</h1>
-      <Link to="/">
-        <button type="button" className="add-items-btn">
-          Add items
-        </button>
-      </Link>
+        <h1 className="empty-text">You cart is empty</h1>
+        <Link to="/">
+          <button type="button" className="add-items-btn">
+            Add items
+          </button>
+        </Link>
+      </div>
     </div>
   )
 
   if (cartList.length === 0) {
-    return returnCartEmpty()
+    return (
+      <div>
+        <Navbar />
+        {returnCartEmpty()}
+      </div>
+    )
   }
 
   return (
     <div>
+      <Navbar />
       {removeAllItems()}
       {returnItemsList()}
     </div>

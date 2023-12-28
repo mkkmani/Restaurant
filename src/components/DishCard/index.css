@@ -84,3 +84,9 @@
   border-radius: 10px;
   cursor: pointer;
 }
+
+.dish-btn-quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

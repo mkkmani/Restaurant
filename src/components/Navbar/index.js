@@ -12,14 +12,21 @@ const Navbar = props => {
     history.replace('/login')
   }
 
-  const {cartList} = useContext(RestaurantContext)
+  const {cartList, restaurantDetails} = useContext(RestaurantContext)
   const itemsCount = cartList.length
 
+  let name = ''
+
+  if (restaurantDetails.length > 0) {
+    name = restaurantDetails[0].restaurantName
+  } else {
+    name = 'loading...'
+  }
   return (
     <nav className="navbar">
       <div className="logo">
         <Link to="/" className="link">
-          <span className="resto-name">UNI Resto Cafe</span>
+          <span className="resto-name">{name}</span>
         </Link>
       </div>
       <ul className="nav-links">
@@ -31,6 +38,7 @@ const Navbar = props => {
         <li>
           <Link to="/cart" className="link cart-count">
             <AiOutlineShoppingCart className="nav-icon" />
+            <p>My orders</p>
             {itemsCount > 0 && <span className="span-count">{itemsCount}</span>}
           </Link>
         </li>
