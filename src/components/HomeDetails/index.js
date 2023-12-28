@@ -51,13 +51,15 @@ const HomeDetails = () => {
       return null
     }
 
-    const {categoryDishes} = activeCategory
+    const {categoryDishes, menuCategory} = activeCategory
+
+    const custom = menuCategory === 'Fast Food'
 
     return (
       <ul className="items-ul-home">
         {categoryDishes.map(each => (
           <li key={each.dishId}>
-            <DishCard key={each.dishId} details={each} />
+            <DishCard key={each.dishId} details={each} custom={custom} />
           </li>
         ))}
       </ul>

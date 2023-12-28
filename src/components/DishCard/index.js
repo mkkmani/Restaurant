@@ -4,7 +4,7 @@ import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
 const DishCard = props => {
-  const {details} = props
+  const {details, custom} = props
   const {addToCart} = useContext(RestaurantContext)
   const {
     currency,
@@ -39,6 +39,7 @@ const DishCard = props => {
           <p className="dish-name">{dishName}</p>
           <span>{`${currency} ${dishPrice}`}</span>
           <span className="dish-desc">{dishDesc}</span>
+          {custom && <p>Customizations available</p>}
           <div>
             {dishAvailability ? (
               <div className="dish-btn-quantity">
