@@ -65,7 +65,7 @@ const CartRoute = () => {
                 </div>
               </div>
               <div className="remove-btn-div">
-                <p className="cost-p">{`Cost: SAR ${
+                <p className="cost-p">{`Cost: ${item.currency} ${
                   item.dishPrice * item.quantity
                 }`}</p>
                 <button

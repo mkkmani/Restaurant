@@ -17,19 +17,19 @@ const DishCard = props => {
     dishType,
   } = details
 
-  const [quantity, setQuantity] = useState(0)
+  //   const [quantity, setQuantity] = useState(0)
 
-  const handleIncrement = () => {
-    setQuantity(quantity + 1)
-    addToCart({...details, quantity: quantity + 1})
-  }
+  //   const handleIncrement = () => {
+  //     setQuantity(quantity + 1)
+  //     addToCart({...details, quantity: quantity + 1})
+  //   }
 
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1)
-      addToCart({...details, quantity: quantity - 1})
-    }
-  }
+  //   const handleDecrement = () => {
+  //     if (quantity > 0) {
+  //       setQuantity(quantity - 1)
+  //       addToCart({...details, quantity: quantity - 1})
+  //     }
+  //   }
 
   return (
     <div className="dish-card">
@@ -43,20 +43,14 @@ const DishCard = props => {
           <div>
             {dishAvailability ? (
               <div className="dish-btn-quantity">
+                {/* Your quantity handling buttons can go here */}
+                {/* e.g., increment, decrement */}
                 <button
                   type="button"
-                  className="decrement-btn"
-                  onClick={handleDecrement}
+                  className="add-btn"
+                  onClick={() => addToCart(details)}
                 >
-                  -
-                </button>
-                <p>{quantity}</p>
-                <button
-                  type="button"
-                  className="increment-btn"
-                  onClick={handleIncrement}
-                >
-                  +
+                  ADD TO CART
                 </button>
               </div>
             ) : (

@@ -1,7 +1,7 @@
 import {Link, withRouter} from 'react-router-dom'
 import {useContext} from 'react'
 import Cookies from 'js-cookie'
-import {AiOutlineShoppingCart} from 'react-icons/ai'
+import {AiOutlineShoppingCart, AiOutlineHome} from 'react-icons/ai'
 import RestaurantContext from '../../Context/cartContext'
 import './index.css'
 
@@ -22,6 +22,7 @@ const Header = props => {
   } else {
     name = 'loading...'
   }
+
   return (
     <nav className="navbar">
       <div className="logo">
@@ -31,7 +32,8 @@ const Header = props => {
       </div>
       <ul className="nav-links">
         <li>
-          <Link to="/" className="link">
+          <Link to="/" className="link cart-count">
+            <AiOutlineHome className="nav-icon" />
             Home
           </Link>
         </li>
@@ -39,7 +41,7 @@ const Header = props => {
           <Link to="/cart" className="link cart-count">
             <AiOutlineShoppingCart className="nav-icon" />
             <p>My orders</p>
-            {itemsCount > 0 && <span className="span-count">{itemsCount}</span>}
+            <span className="span-count">{itemsCount}</span>
           </Link>
         </li>
         <li>
