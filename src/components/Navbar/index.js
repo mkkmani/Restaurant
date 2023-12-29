@@ -1,13 +1,13 @@
-import {Link, withRouter} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineShoppingCart, AiOutlineHome} from 'react-icons/ai'
 import CartContext from '../../Context/CartContext'
 import './index.css'
 
-const Header = props => {
+const Header = () => {
+  const history = useHistory()
   const handleLogout = () => {
-    const {history} = props
     Cookies.remove('jwt_token')
     history.replace('/login')
   }
@@ -54,4 +54,4 @@ const Header = props => {
   )
 }
 
-export default withRouter(Header)
+export default Header
