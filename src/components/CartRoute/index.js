@@ -2,7 +2,7 @@ import './index.css'
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import Header from '../Navbar'
-import CartContext from '../../Context/cartContext'
+import CartContext from '../../Context/CartContext'
 
 const CartRoute = () => {
   const {
@@ -22,7 +22,7 @@ const CartRoute = () => {
     totalAmount += each.dishPrice * each.quantity
   })
 
-  const emptyCart = () => (
+  const EmptyCart = () => (
     <div className="empty-cart">
       <img className="empty-img" src={emptyImgUrl} alt="empty cart" />
       <h1>Your cart is empty</h1>
@@ -34,7 +34,7 @@ const CartRoute = () => {
     </div>
   )
 
-  const cartItems = () => (
+  const CartItems = () => (
     <div>
       <>
         <div className="remove-all-div">
@@ -107,7 +107,7 @@ const CartRoute = () => {
   return (
     <div>
       <Header />
-      {cartList.length > 0 ? cartItems() : emptyCart()}
+      {cartList.length > 0 ? <CartItems /> : <EmptyCart />}
     </div>
   )
 }

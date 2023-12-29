@@ -1,46 +1,139 @@
+// import {useContext, useState} from 'react'
+// import './index.css'
+// import {BiFoodTag} from 'react-icons/bi'
+// import CartContext from '../../Context/CartContext'
+
+// const DishCard = props => {
+//   const {details} = props
+//   const {
+//     dishId,
+//     dishName,
+//     dishImage,
+//     addonCat,
+//     currency,
+//     dishAvailability,
+//     dishCalories,
+//     dishDesc,
+//     dishPrice,
+//     dishType,
+//   } = details
+
+//   const context = useContext(CartContext)
+//   const {
+//     addToCart,
+//     incrementCartItemQuantity,
+//     decrementCartItemQuantity,
+//     cartList,
+//   } = context
+
+//   const dishInCart = cartList.find(item => item.dishId.includes(dishId))
+//   const initialQuantity = dishInCart ? dishInCart.quantity : 0
+
+//   const [quantity, setQuantity] = useState(initialQuantity)
+
+//   const increment = () => {
+//     setQuantity(quantity + 1)
+//     incrementCartItemQuantity(dishId)
+//   }
+
+//   const decrement = () => {
+//     if (quantity > 0) {
+//       setQuantity(quantity - 1)
+//       decrementCartItemQuantity(dishId)
+//     }
+//   }
+
+//   const foodTypeClassName = dishType === 1 ? 'non-veg' : 'veg'
+
+//   return (
+//     <div className="dish-item-container">
+//       <div className="label-details">
+//         <BiFoodTag className={`type-label ${foodTypeClassName}`} />
+//         <div>
+//           <p className="dish-name">{dishName}</p>
+//           <p className="dish-desc">{dishDesc}</p>
+//           <p>{`${currency} ${dishPrice}`}</p>
+//           {addonCat > 0 && <p>Customizations available</p>}
+//           {dishAvailability ? (
+//             <>
+//               <div className="qty-btns">
+//                 <button type="button" className="qty-btn" onClick={decrement}>
+//                   -
+//                 </button>
+//                 <p>{quantity}</p>
+//                 <button type="button" className="qty-btn" onClick={increment}>
+//                   +
+//                 </button>
+//               </div>
+//               <div>
+//                 <button
+//                   type="button"
+//                   className="add-btn"
+//                   onClick={() => {
+//                     addToCart(details)
+//                   }}
+//                 >
+//                   ADD TO CART
+//                 </button>
+//               </div>
+//             </>
+//           ) : (
+//             <p>Item not available</p>
+//           )}
+//         </div>
+//         <p className="calories">{`Calories ${dishCalories}`}</p>
+//         <img src={dishImage} alt={dishName} className="dish-image" />
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default DishCard
+
 import {useState, useContext} from 'react'
 import {BiFoodTag} from 'react-icons/bi'
-import RestaurantContext from '../../Context/cartContext'
+import CartContext from '../../Context/CartContext'
 import './index.css'
 
 const DishCard = props => {
-  const {details, custom} = props
+  const {details} = props
+
   const {
-    addToCart,
-    incrementCartItemQuantity,
-    decrementCartItemQuantity,
-  } = useContext(RestaurantContext)
-  const {
+    dishId,
+    dishName,
+    dishImage,
+    addonCat,
     currency,
     dishAvailability,
     dishCalories,
     dishDesc,
-    dishImage,
-    dishName,
     dishPrice,
     dishType,
-    dishId,
-    quantity,
   } = details
 
-  const [itemQuantity, setItemQuantity] = useState(0)
+  const context = useContext(CartContext)
+  const {
+    addToCart,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+    cartList,
+  } = context
 
-  const qtyIncrement = () => {
-    setItemQuantity(itemQuantity + 1)
-    addToCart({...details, quantity: itemQuantity + 1})
+  const dishInCart = cartList.find(item => item.dishId.includes(dishId))
+  const initialQuantity = dishInCart ? dishInCart.quantity : 0
+
+  const [quantity, setQuantity] = useState(initialQuantity)
+
+  const increment = () => {
+    setQuantity(quantity + 1)
     incrementCartItemQuantity(dishId)
   }
 
-  const qtyDecrement = () => {
-    if (itemQuantity > 0) {
-      setItemQuantity(itemQuantity - 1)
+  const decrement = () => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1)
       decrementCartItemQuantity(dishId)
     }
-  }
-
-  const onClickAddBtn = () => {
-    addToCart(details)
-    setItemQuantity(1)
   }
 
   return (
@@ -51,24 +144,26 @@ const DishCard = props => {
           <p className="dish-name">{dishName}</p>
           <span>{`${currency} ${dishPrice}`}</span>
           <span className="dish-desc">{dishDesc}</span>
-          {custom && <p>Customizations available</p>}
+          {addonCat > 0 && <p>Customizations available</p>}
           <div>
             {dishAvailability ? (
               <div>
                 <div className="dish-btn-quantity">
-                  <button type="button" onClick={qtyDecrement}>
+                  <button type="button" className="qty-btn" onClick={decrement}>
                     -
                   </button>
-                  {quantity ? <p>{quantity}</p> : <p>{itemQuantity}</p>}
-                  <button type="button" onClick={qtyIncrement}>
+                  <p>{quantity}</p>
+                  <button type="button" className="qty-btn" onClick={increment}>
                     +
                   </button>
                 </div>
-                <div className="dish-btn-quantity">
+                <div>
                   <button
                     type="button"
                     className="add-btn"
-                    onClick={onClickAddBtn}
+                    onClick={() => {
+                      addToCart(details)
+                    }}
                   >
                     ADD TO CART
                   </button>

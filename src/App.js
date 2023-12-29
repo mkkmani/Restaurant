@@ -5,7 +5,7 @@ import LoginForm from './components/LoginRoute'
 import HomeRoute from './components/HomeRoute'
 import CartRoute from './components/CartRoute'
 import ProtectedRoute from './components/ProtectedRouter'
-import CartContext from './Context/cartContext'
+import CartContext from './Context/CartContext'
 
 class App extends Component {
   state = {
@@ -23,7 +23,7 @@ class App extends Component {
       updated[existing].quantity += 1
       this.setState({cartList: updated})
     } else {
-      const updated = [...cartList, {...details, quantity: 1}]
+      const updated = [...cartList, {...details, quantity: 0}]
       this.setState({cartList: updated})
     }
   }

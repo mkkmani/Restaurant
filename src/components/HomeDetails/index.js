@@ -1,10 +1,10 @@
 import {useContext, useState, useEffect} from 'react'
 import DishCard from '../DishCard'
-import RestaurantContext from '../../Context/cartContext'
+import CartContext from '../../Context/CartContext'
 import './index.css'
 
 const HomeDetails = () => {
-  const {restaurantDetails} = useContext(RestaurantContext)
+  const {restaurantDetails} = useContext(CartContext)
   const [activeTab, setActiveTab] = useState('')
   const menuItems = restaurantDetails[0].tableMenuList
 

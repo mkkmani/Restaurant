@@ -2,7 +2,7 @@ import {useContext, useEffect, useState} from 'react'
 import Loader from 'react-loader-spinner'
 import HomeDetails from '../HomeDetails'
 import Header from '../Navbar'
-import CartContext from '../../Context/cartContext'
+import CartContext from '../../Context/CartContext'
 import './index.css'
 
 const apiStatusList = {
@@ -60,7 +60,6 @@ const HomeRoute = () => {
               })),
             })),
           }))
-
           addDetails(updatedData)
           setApiStatus(apiStatusList.success)
         } else {

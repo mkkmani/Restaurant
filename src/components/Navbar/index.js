@@ -2,7 +2,7 @@ import {Link, withRouter} from 'react-router-dom'
 import {useContext} from 'react'
 import Cookies from 'js-cookie'
 import {AiOutlineShoppingCart, AiOutlineHome} from 'react-icons/ai'
-import RestaurantContext from '../../Context/cartContext'
+import CartContext from '../../Context/CartContext'
 import './index.css'
 
 const Header = props => {
@@ -12,7 +12,7 @@ const Header = props => {
     history.replace('/login')
   }
 
-  const {cartList, restaurantDetails} = useContext(RestaurantContext)
+  const {cartList, restaurantDetails} = useContext(CartContext)
   const itemsCount = cartList.length
 
   let name = ''
