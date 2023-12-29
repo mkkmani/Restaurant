@@ -1,17 +1,20 @@
+import './index.css'
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import Header from '../Navbar'
 import CartContext from '../../Context/cartContext'
-import './index.css'
 
 const CartRoute = () => {
   const {
     cartList,
-    decrementCartItemQuantity,
     incrementCartItemQuantity,
-    removeAllCartItems,
+    decrementCartItemQuantity,
     removeFromCart,
+    removeAllCartItems,
   } = useContext(CartContext)
+
+  const emptyImgUrl =
+    'https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png'
 
   let totalAmount = 0
 
@@ -19,20 +22,31 @@ const CartRoute = () => {
     totalAmount += each.dishPrice * each.quantity
   })
 
-  const removeAllItems = () => (
-    <div className="remove-all-div">
-      <button
-        className="remove-all-btn"
-        type="button"
-        onClick={() => removeAllCartItems()}
-      >
-        Remove all
-      </button>
+  const emptyCart = () => (
+    <div className="empty-cart">
+      <img className="empty-img" src={emptyImgUrl} alt="empty cart" />
+      <h1>Your cart is empty</h1>
+      <Link to="/">
+        <button type="button" className="add-items-btn">
+          Add items
+        </button>
+      </Link>
     </div>
   )
 
-  const returnItemsList = () => (
+  const cartItems = () => (
     <div>
+      <>
+        <div className="remove-all-div">
+          <button
+            className="remove-all-btn"
+            type="button"
+            onClick={() => removeAllCartItems()}
+          >
+            Remove all
+          </button>
+        </div>
+      </>
       <ul className="cart-items-ul">
         {cartList.map(item => (
           <li key={item.dishId}>
@@ -90,39 +104,10 @@ const CartRoute = () => {
     </div>
   )
 
-  const returnCartEmpty = () => (
-    <div>
-      <div className="empty-cart">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-empty-cart-img.png"
-          className="cart-empty-img"
-          alt="cart empty"
-        />
-
-        <h1 className="empty-text">You cart is empty</h1>
-        <Link to="/">
-          <button type="button" className="add-items-btn">
-            Add items
-          </button>
-        </Link>
-      </div>
-    </div>
-  )
-
-  if (cartList.length === 0) {
-    return (
-      <div>
-        <Header />
-        {returnCartEmpty()}
-      </div>
-    )
-  }
-
   return (
     <div>
       <Header />
-      {removeAllItems()}
-      {returnItemsList()}
+      {cartList.length > 0 ? cartItems() : emptyCart()}
     </div>
   )
 }

@@ -5,7 +5,11 @@ import './index.css'
 
 const DishCard = props => {
   const {details, custom} = props
-  const {addToCart} = useContext(RestaurantContext)
+  const {
+    addToCart,
+    incrementCartItemQuantity,
+    decrementCartItemQuantity,
+  } = useContext(RestaurantContext)
   const {
     currency,
     dishAvailability,
@@ -15,21 +19,29 @@ const DishCard = props => {
     dishName,
     dishPrice,
     dishType,
+    dishId,
+    quantity,
   } = details
 
-  //   const [quantity, setQuantity] = useState(0)
+  const [itemQuantity, setItemQuantity] = useState(0)
 
-  //   const handleIncrement = () => {
-  //     setQuantity(quantity + 1)
-  //     addToCart({...details, quantity: quantity + 1})
-  //   }
+  const qtyIncrement = () => {
+    setItemQuantity(itemQuantity + 1)
+    addToCart({...details, quantity: itemQuantity + 1})
+    incrementCartItemQuantity(dishId)
+  }
 
-  //   const handleDecrement = () => {
-  //     if (quantity > 0) {
-  //       setQuantity(quantity - 1)
-  //       addToCart({...details, quantity: quantity - 1})
-  //     }
-  //   }
+  const qtyDecrement = () => {
+    if (itemQuantity > 0) {
+      setItemQuantity(itemQuantity - 1)
+      decrementCartItemQuantity(dishId)
+    }
+  }
+
+  const onClickAddBtn = () => {
+    addToCart(details)
+    setItemQuantity(1)
+  }
 
   return (
     <div className="dish-card">
@@ -42,14 +54,25 @@ const DishCard = props => {
           {custom && <p>Customizations available</p>}
           <div>
             {dishAvailability ? (
-              <div className="dish-btn-quantity">
-                <button
-                  type="button"
-                  className="add-btn"
-                  onClick={() => addToCart(details)}
-                >
-                  ADD TO CART
-                </button>
+              <div>
+                <div className="dish-btn-quantity">
+                  <button type="button" onClick={qtyDecrement}>
+                    -
+                  </button>
+                  {quantity ? <p>{quantity}</p> : <p>{itemQuantity}</p>}
+                  <button type="button" onClick={qtyIncrement}>
+                    +
+                  </button>
+                </div>
+                <div className="dish-btn-quantity">
+                  <button
+                    type="button"
+                    className="add-btn"
+                    onClick={onClickAddBtn}
+                  >
+                    ADD TO CART
+                  </button>
+                </div>
               </div>
             ) : (
               <p>Not available</p>
