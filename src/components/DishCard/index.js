@@ -43,8 +43,6 @@ const DishCard = props => {
           <div>
             {dishAvailability ? (
               <div className="dish-btn-quantity">
-                {/* Your quantity handling buttons can go here */}
-                {/* e.g., increment, decrement */}
                 <button
                   type="button"
                   className="add-btn"
