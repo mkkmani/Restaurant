@@ -39,7 +39,9 @@ const Header = () => {
         </li>
         <li>
           <Link to="/cart" className="link cart-count">
-            <AiOutlineShoppingCart className="nav-icon" />
+            <button data-testid="cart" type="button">
+              <AiOutlineShoppingCart className="nav-icon" aria-label="cart" />
+            </button>
             <p>My orders</p>
             <span className="span-count">{itemsCount}</span>
           </Link>
