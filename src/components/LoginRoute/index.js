@@ -10,58 +10,58 @@ const LoginRoute = () => {
   const [showErr, setShowErr] = useState(false)
   const history = useHistory()
 
-  //   const onClickLogin = async e => {
-  //     e.preventDefault()
+    const onClickLogin = async e => {
+      e.preventDefault()
 
-  //     if (username === '') {
-  //       setErrorMsg('* Please enter username')
-  //       setShowErr(true)
-  //     } else if (password === '') {
-  //       setErrorMsg('* Please enter password')
-  //       setShowErr(true)
-  //     } else if (username !== 'Mani') {
-  //       setErrorMsg('* Invalid username')
-  //       setShowErr(true)
-  //     } else if (password !== 'Mani@123') {
-  //       setErrorMsg('* Invalid password')
-  //       setShowErr(true)
-  //     } else {
-  //       const details = {username: 'rahul', password: 'rahul@2021'}
-  //       const api = 'https://apis.ccbp.in/login'
-  //       const options = {
-  //         method: 'POST',
-  //         body: JSON.stringify(details),
-  //       }
+      if (username === '') {
+        setErrorMsg('* Please enter username')
+        setShowErr(true)
+      } else if (password === '') {
+        setErrorMsg('* Please enter password')
+        setShowErr(true)
+      } else if (username !== 'mani') {
+        setErrorMsg('* Invalid username')
+        setShowErr(true)
+      } else if (password !== 'Mani@123') {
+        setErrorMsg('* Invalid password')
+        setShowErr(true)
+      } else {
+        const details = {username: 'rahul', password: 'rahul@2021'}
+        const api = 'https://apis.ccbp.in/login'
+        const options = {
+          method: 'POST',
+          body: JSON.stringify(details),
+        }
 
-  //       const response = await fetch(api, options)
-  //       const data = await response.json()
+        const response = await fetch(api, options)
+        const data = await response.json()
 
-  //       Cookies.set('jwt_token', data.jwt_token, {expires: 30})
-  //       history.push('/')
-  //     }
+        Cookies.set('jwt_token', data.jwt_token, {expires: 30})
+        history.push('/')
+      }
+    }
+
+  // const onClickLogin = async e => {
+  //   e.preventDefault()
+  //   const details = {username, password}
+  //   const api = 'https://apis.ccbp.in/login'
+
+  //   const options = {
+  //     method: 'POST',
+  //     body: JSON.stringify(details),
   //   }
 
-  const onClickLogin = async e => {
-    e.preventDefault()
-    const details = {username, password}
-    const api = 'https://apis.ccbp.in/login'
+  //   const response = await fetch(api, options)
+  //   const data = await response.json()
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(details),
-    }
-
-    const response = await fetch(api, options)
-    const data = await response.json()
-
-    if (response.ok) {
-      Cookies.set('jwt_token', data.jwt_token, {expires: 30})
-      history.push('/')
-    } else {
-      setErrorMsg(data.error_msg)
-      setShowErr(true)
-    }
-  }
+  //   if (response.ok) {
+  //     Cookies.set('jwt_token', data.jwt_token, {expires: 30})
+  //     history.push('/')
+  //   } else {
+  //     setErrorMsg(data.error_msg)
+  //     setShowErr(true)
+  //   }
+  // }
 
   const LoginForm = () => (
     <div className="login-div">
